@@ -27,4 +27,4 @@ Methods / Approach
 ## MarkDown Links
 👉 [Click here to view my HTML report](https://your-username.github.io/your-repo-name/yourfile.html)
 
-👉 [Link to Rpubs published markdown]http://rpubs.com/yanglamo/1340501 
+👉 [Link to Rpubs published markdown](http://rpubs.com/yanglamo/1340501)
