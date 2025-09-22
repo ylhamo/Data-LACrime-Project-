@@ -30,4 +30,4 @@ Methods / Approach
  [Link to Rpubs published markdown](http://rpubs.com/yanglamo/1340501)
 
  ## JSON LINK
- [Link to JSON]()
+ [Link to JSON](https://github.com/ylhamo/Data-LACrime-Project-/tree/main/json)
