@@ -1,0 +1,117 @@
+---
+title: "Crime In LA"
+output: html_document
+date: Yangchen Lhamo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, message=FALSE, warning=FALSE)  # global defaults
+library(readr)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+library(stringr)
+
+# Step 1: Read the CSV
+crime <- read_csv("/Users/choeshi/ITEC4220/crime.csv")
+
+# Step 2: Convert date columns
+crime <- crime %>%
+  mutate(
+    `Date Rptd` = mdy_hms(`Date Rptd`),
+    `DATE OCC`  = mdy_hms(`DATE OCC`),
+    `TIME OCC` = str_pad(`TIME OCC`, width = 4, pad = "0"),
+    `TIME OCC` = hm(paste0(substr(`TIME OCC`, 1, 2), ":", substr(`TIME OCC`, 3, 4)))
+  )
+```
+#### 1.Extracting crime for 2024 and creating a scatter plot. The scatter plot shows the total amount of crime by the Area code in red and then the blue dashed lines on the scatter plot shows the average number of crimes. Area code that has the highest crime rate in 2024 is 01, Central LA, the lowest crime rate area is area 16, Foothil. 
+```{r}
+crime <- crime %>%
+  mutate(
+    year_occ = year(`DATE OCC`),
+    year_rptd= year(`Date Rptd`)
+  )
+crime2024 <- crime %>%
+  filter(year_occ== 2024)
+#creating a scatterplot
+crimeRate2024 <- crime2024 %>%
+  group_by(AREA) %>%
+  summarise(total_crimes=n(), .groups = "drop")
+mean_crime <- mean(crimeRate2024$total_crimes, na.rm = TRUE)
+ggplot(crimeRate2024, aes(x = AREA, y= total_crimes))+
+  geom_point(color="red", size=3)+
+  geom_hline(yintercept = mean_crime, linetype="dashed", color="blue")+
+  labs(title = "Crime count in 2024 by Area Code",
+       x="Area Code",
+       y="Number of Crimes")
+```
+
+#### 2 This code calculates total crimes per year, total crimes per area, and the average crimes per month, enabling me to analyze trends and changes in crime over time. The line plot shows that the average monthly crime rate increased in 2022, remained stable in 2023, and then decreased in 2024.
+```{r}
+#Total crimes per year
+total_crime_per_year <-crime %>%
+  group_by(year_occ) %>%
+  summarise(Totalcrime= n(), .groups='drop')
+
+#Total crimes per area per year 
+total_crime_by_area <- crime%>%
+  group_by(year_occ, AREA )%>%
+  summarise(CrimePerArea= n(), .groups = 'drop')
+
+#Average crime per month per year 
+average_crime_per_month <- crime %>%
+  mutate(
+    Year= year(`DATE OCC`),
+    Month=month(`DATE OCC`)
+  )%>%
+  group_by(year_occ, Month) %>% #counting crimes per month
+  summarise(CrimesPerMonth= n(), .groups = 'drop')%>%
+  group_by(year_occ) %>%
+  summarise(AverageCrimePerMonth= mean(CrimesPerMonth, na.rm=TRUE))
+
+
+ggplot(average_crime_per_month, aes(x = year_occ, y = AverageCrimePerMonth)) +
+  geom_line(color = "blue", size = 1) +
+  geom_point(color = "red", size = 2) +
+  labs(title = "Average Crime Per Month",
+       x = "Year",
+       y = "Average Crimes Per Month")
+```
+
+### 3. Finding out if there is a correlation between total crimes and average crime per month. The correlation coefficient is 1, which means there's a perfect positive linear relationship between Total Crimes per year and Average crimes per month.
+```{r}
+# Merge total crimes and average monthly crimes per year
+crime_summary <- total_crime_per_year %>%
+  left_join(average_crime_per_month, by ="year_occ")
+#Finding correlation
+cor_test <- cor.test(crime_summary$Totalcrime, crime_summary$AverageCrimePerMonth)
+print(cor_test)
+```
+
+### 4. The histogram below shows the distribution of victim ages. The most frequent age recorded is 0, which occurs because, in certain crime categories such as vehicle theft or vandalism, the data set records the age of the property rather than the age of a person. Besides that, the highest victim age falls between late 20's and early 30's.
+```{r}
+hist(crime$`Vict Age`,
+     main = "Histogram of Victim Age",
+     xlab = "Age",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "black")
+
+```
+
+### 5.Question: Is there a significant difference in the number of crimes between area 1 and 3?
+### The results showed that Area 1 had slightly higher average yearly crime count(11,611) compared to Area 3(9,573). However, the p-value (0.55) indicates that the difference is not statistically significant. Therefore,the difference in the crime levels between these two areas are not meaningful.
+```{r}
+#Creating a subset with only Area 1 and Area 2
+crime_subset <- crime %>%
+  filter(AREA %in% c("01","03")) %>%
+  mutate(AREA= factor(AREA))
+#count crimes per year per area
+crime_counts <-crime_subset %>%
+  group_by(AREA,  year_occ) %>%
+  summarise(TotalCrimes= n(), .groups= "drop")
+#t-test comparing Area 1 Vs Area3
+t.test_result <- t.test(TotalCrimes ~ AREA, data =crime_counts)
+print(t.test_result)
+```
+
