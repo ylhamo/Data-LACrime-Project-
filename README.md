@@ -28,3 +28,6 @@ Methods / Approach
  [Link my HTML report](https://github.com/ylhamo/Data-LACrime-Project-/blob/main/CrimeAnalysis.html)
 
  [Link to Rpubs published markdown](http://rpubs.com/yanglamo/1340501)
+
+ ## JSON LINK
+ [Link to JSON]()
