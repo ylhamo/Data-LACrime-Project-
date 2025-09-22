@@ -8,6 +8,7 @@ This dataset captures crime incidents in the City of Los Angeles from 2020 to th
  
 ## Project Overview
 Goals: Learn how to access, clean, annd analyze public data
+
 Tools: R studio, Command Prompt, Powerbi, DuckBD
 
 ## MarkDown Links
