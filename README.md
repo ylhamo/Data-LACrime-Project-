@@ -8,10 +8,8 @@ This dataset captures crime incidents in the City of Los Angeles from 2020 to th
  
 ## Project Overview
 Goals: Learn how to access, clean, annd analyze public data
-
 Tools: R studio, Command Prompt, Powerbi, DuckBD
-
- Methods / Approach
+Methods / Approach
 - Import and clean dataset using R and DuckDB
 - Perform exploratory data analysis (EDA) to identify trends
 - Use Power BI to create interactive dashboards
