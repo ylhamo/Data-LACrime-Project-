@@ -25,6 +25,6 @@ Methods / Approach
 
 
 ## MarkDown Links
-👉 [Click here to view my HTML report](https://your-username.github.io/your-repo-name/yourfile.html)
+ [Click here to view my HTML report](https://github.com/ylhamo/Data-LACrime-Project-/blob/main/CrimeAnalysis.html)
 
-👉 [Link to Rpubs published markdown](http://rpubs.com/yanglamo/1340501)
+ [Link to Rpubs published markdown](http://rpubs.com/yanglamo/1340501)
