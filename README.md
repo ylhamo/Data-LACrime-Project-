@@ -11,5 +11,18 @@ Goals: Learn how to access, clean, annd analyze public data
 
 Tools: R studio, Command Prompt, Powerbi, DuckBD
 
+ Methods / Approach
+- Import and clean dataset using R and DuckDB
+- Perform exploratory data analysis (EDA) to identify trends
+- Use Power BI to create interactive dashboards
+- Apply summary statistics and visualizations to uncover insights
+
+## Key Questions
+- Which types of crimes are most common in LA?
+- Are there seasonal or monthly trends in crime incidents?
+- What neighborhoods have higher crime rates?
+- Can we identify patterns between crime type, time, and location?
+
+
 ## MarkDown Links
 http://rpubs.com/yanglamo/1340501 
