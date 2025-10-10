@@ -34,4 +34,4 @@ Methods / Approach
  ## D3 JavaScript Visualization
  # Crime Category by size
  1. Folder with files[]
- 2. [CodePen for Project](https://codepen.io/ylhamo-the-scripter/pen/bNEReQE?editors=1111)
+ 2. CodePen for Project [Link](https://codepen.io/ylhamo-the-scripter/pen/bNEReQE?editors=1111)
