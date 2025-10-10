@@ -32,6 +32,6 @@ Methods / Approach
  ## JSON LINK
  [Link to JSON](https://github.com/ylhamo/Data-LACrime-Project-/tree/main/json)
  ## D3 JavaScript Visualization
- #Crime Category by size
+ # Crime Category by size
  1. Folder with files[]
- 2. CodePen for Project []
+ 2. [CodePen for Project](https://codepen.io/ylhamo-the-scripter/pen/bNEReQE?editors=1111)
