@@ -34,5 +34,6 @@ Methods / Approach
  
  ## D3 JavaScript Visualization
  ### Crime Category by size
+ The crime data from 2020–2022 is represented using a circle-packed visualization. Each circle corresponds to a specific crime type. The circle size reflects the number of incidents, and the color represents the crime category. Hovering over a circle displays the crime name, total count, and category.
  1. Folder with files[Link](https://github.com/ylhamo/Data-LACrime-Project-/tree/main/my_d3_folder)
  2. CodePen for Project [Link](https://codepen.io/ylhamo-the-scripter/pen/bNEReQE?editors=1111)
